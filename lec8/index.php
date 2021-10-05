@@ -1,5 +1,6 @@
 <?php
 // var_dump($_SERVER);
+
 // var_dump($_POST);
 
 if(isset($_POST['send'])) {
@@ -7,34 +8,29 @@ if(isset($_POST['send'])) {
     $email = htmlspecialchars($_POST['email']);
 
     $gender = '';
-    if(isset($_POST['gender'])) {
+    if( isset($_POST['gender']) && $_POST['gender'] != '') {
         $gender = htmlspecialchars($_POST['gender']);
     }
-    // $gender = $_POST['gender'];
 
-    // echo $gender;
-    // exit;
-
-    // echo "You enter " . $_POST['name'] . ' Name and ' . $_POST['email'] . ' Email';
-
-    // if( isset($_POST['gender']) && $_POST['gender'] != '') {
-    //     echo "You enter $name Name and $email Email";
-    // }
-
-    if($name == '' || $email == '' || $gender == '') {
-        echo "<span style='color:red'>All Fields is required</span>";
+    if($name != '' && $email != '' && $gender != '') {
+    // if($name == '' || $email == '' || $gender == '') {
+        echo "$name $email";
     }else {
-        echo "You enter $name Name and $email Email";
+        echo "<span style='color:red'>All fields is required</span>";
     }
 
+    // if($name == '') {
+    // // if( empty($name) ) {
+
+    // }
     
 }
 
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-    <input type="text" placeholder="Name" name="name"><br>
-    <input type="email" placeholder="Email" name="email" /><br>
+    <input type="text" name="name" placeholder="Name"><br>
+    <input type="email" name="email" placeholder="Email"><br>
     <input type="radio" value="Male" name="gender"> Male 
-    <input type="radio" value="Female" name="gender"> Female 
+    <input type="radio" value="Female" name="gender"> Female <br>
     <button name="send">Send</button>
 </form>
